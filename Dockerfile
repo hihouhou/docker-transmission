@@ -20,7 +20,9 @@ RUN useradd -ms /bin/bash transmission && \
 
 USER transmission
 
-COPY settings.json /home/transmission/.config/transmission-daemon/settings.json
+COPY --chown=transmission:transmission settings.json /home/transmission/.config/transmission-daemon/settings.json
+
 EXPOSE 9091
 
 CMD ["transmission-daemon", "-f", "-g", "/home/transmission/.config/transmission-daemon"]
+#CMD ["transmission-daemon", "-f", "-g", "/var/lib/transmission-daemon"]
